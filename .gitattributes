@@ -1,0 +1,35 @@
+
+# Padronização de quebras de linha
+* text=auto
+
+# Python
+*.py text eol=lf
+
+# Configurações e documentação
+*.toml text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# Scripts
+*.sh text eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Arquivos binários
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.sqlite3 binary
+*.db binary
+*.pyc binary
+*.pyd binary
+*.dll binary
+*.exe binary

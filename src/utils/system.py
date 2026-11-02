@@ -1,17 +1,18 @@
-import subprocess
+import subprocess, sys
 
 # core
 from core import settings
 from core.constants import USERNAME
 
 # ui
-from ui import Colors
+from ui import Colors, alert_ui
 
 
-def exit():
+def shutdown():
     """Finaliza a ferramenta"""
 
-    subprocess.run('exit /b', shell=True)
+    alert_ui('info', "Finalizando a ferramenta...")
+    sys.exit()
 
 
 def clear():

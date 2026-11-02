@@ -1,6 +1,9 @@
+# core
+from core.exceptions import CommandNotFoundError
+
 # utils
 from utils import entry
-from utils.system import exit, clear, set_title
+from utils import shutdown, clear, set_title
 
 # ui
 from ui import alert_ui
@@ -27,6 +30,9 @@ class Main:
                 entries = entry()
                 commands(entries)
 
+            except CommandNotFoundError as e:
+                alert_ui('error', str(e))
+
             except ValueError as e:
                 alert_ui('error', str(e))
 
@@ -40,4 +46,4 @@ if __name__ == '__main__':
         tool.startup()
 
     except KeyboardInterrupt:
-        alert_ui('info', "Finalizando...")
+        shutdown()
