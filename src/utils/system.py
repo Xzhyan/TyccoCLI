@@ -31,7 +31,7 @@ def entry(normalize: bool = True) -> list:
     """Processa as entradas do usuário"""
 
     print(f'\n {Colors.UI_ONE}┌─({Colors.UI_TWO}{settings.TOOL_NAME}{Colors.UI_ONE})-[{Colors.UI_TWO}{USERNAME}{Colors.UI_ONE}]')
-    entries = input(f" {Colors.UI_ONE}└───>> {Colors.TEXT_TWO}")
+    entries = input(f" {Colors.UI_ONE}└───⋉ {Colors.TEXT_TWO}")
 
     if not entries:
         raise ValueError("nenhuma entrada foi inserida.")
