@@ -1,4 +1,9 @@
 
+# core
+from core.constants import SHORTS_JSON
+
+# utils
+from utils.functions import read_json
 
 
 class Short:
@@ -29,7 +34,9 @@ class Short:
     def manage(self, params: list):
         """Controla os comandos do Short"""
 
-        print(params)
+        data = read_json(SHORTS_JSON)
+
+        
 
 
 SPECIAL_COMMANDS = {
