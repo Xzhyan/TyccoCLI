@@ -21,6 +21,18 @@ def read_json(path: Path) -> dict:
     except FileNotFoundError:
         alert_ui('error', f"{path}: arquivo não encontrado")
 
+        alert_ui('info', "para criar um novo json, use: short reset")
+
     except Exception as e:
         alert_ui('error', f"erro desconhecido: {e}")
 
+
+def write_json(path: Path, data: dict):
+    """Escreve dados no arquivo json do path passado"""
+
+    try:
+        with open(path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+    except Exception as e:
+        alert_ui('error', f"erro desconhecido: {e}")
