@@ -38,3 +38,16 @@ def alert_ui(type_: str, text: str, line_brk: bool = True):
         print()
 
     print(f'{alert_color}[{type_.upper()}] > {Colors.TEXT_TWO}{text}')
+
+
+def list_commands(name: str, commands: dict):
+    """Lista os comandos de forma organizada na ferramenta"""
+
+    print('')
+    print(f" ┌─[ {name} ]")
+
+    for cmd, data in commands.items():
+        print(f' ├─┬─ {cmd}')
+        print(f' │ ├─ {data['desc']}')
+        print(f' │ └─ {data['usage']}')
+
