@@ -1,4 +1,7 @@
 {
     "app": {},
-    "dir": {}
+    "dir": {
+        "nane": "samo",
+        "path": "C:\\Core\\Workspace\\webdev\\SAG-GR_Enterprise"
+    }
 }

@@ -7,7 +7,7 @@ from core.exceptions import MissingParametersError, SubcommandNotFoundError
 from utils import read_json, write_json, entry_validator
 
 # ui
-from ui import alert_ui
+from ui import alert_ui, Colors
 
 
 class Short:
@@ -37,13 +37,25 @@ class Short:
     def add(self):
         """Adiciona um novo atalho"""
 
+        print(f'\n {Colors.UI_ONE}[ {Colors.TEXT_TWO}dir {Colors.TEXT_THREE}= atalho de diretório - {Colors.TEXT_TWO}app {Colors.TEXT_THREE}= atalho de aplicativo {Colors.UI_ONE}]')
+
         type_ = entry_validator(
-            " [ dir = atalho de diretório - app = atalho de aplicativo ] \n \n └ tipo do atalho (dir/app) > ",
+            f" {Colors.UI_ONE}└ {Colors.TEXT_TWO}tipo do atalho (dir/app) > ",
             validator=lambda v: v.lower() in ('dir', 'app'),
             error="digite >> dir << ou >> app <<"
         )
 
-        name = entry_validator("apelido do atalho > ")
+        name = entry_validator(f" {Colors.UI_ONE}└ {Colors.TEXT_TWO}apelido do atalho > ")
+
+        path = entry_validator(f" {Colors.UI_ONE}└ {Colors.TEXT_TWO}caminho completo do atalho > ")
+
+        # salva os dados
+        self.data[type_] = {
+            'nane': name,
+            'path': path
+        }
+
+        write_json(SHORTS_JSON, self.data)
 
     def list_(self):
         """Lista os atalhos adicionados"""
