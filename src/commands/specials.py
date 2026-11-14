@@ -1,12 +1,13 @@
 
 # core
 from core.constants import SHORTS_JSON
+from core.exceptions import MissingParametersError, SubcommandNotFoundError
 
 # utils
-from utils.functions import read_json, write_json
+from utils import read_json, write_json, entry_validator
 
 # ui
-from ui.ui_cli import alert_ui
+from ui import alert_ui
 
 
 class Short:
@@ -24,11 +25,25 @@ class Short:
             }
         }
 
+        # verifica se o comando veio com parametros
+        if len(params) <= 1:
+            raise MissingParametersError(cmd=params[0])
+
+        self.data = read_json(SHORTS_JSON)
+
         self.manage(params)
 
 
     def add(self):
         """Adiciona um novo atalho"""
+
+        type_ = entry_validator(
+            " [ dir = atalho de diretório - app = atalho de aplicativo ] \n \n └ tipo do atalho (dir/app) > ",
+            validator=lambda v: v.lower() in ('dir', 'app'),
+            error="digite >> dir << ou >> app <<"
+        )
+
+        name = entry_validator("apelido do atalho > ")
 
     def list_(self):
         """Lista os atalhos adicionados"""
@@ -60,7 +75,7 @@ class Short:
             self.SUB_COMMANDS[sub_cmd]['handler']()
 
         else:
-            print("tente short help")
+            raise SubcommandNotFoundError(subcmd=sub_cmd)
 
 
 SPECIAL_COMMANDS = {

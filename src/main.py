@@ -10,7 +10,7 @@ from ui import alert_ui
 from ui.banners import Banners
 
 # commands
-from commands import commands
+from commands import CATEGORIES, DEFAULT_COMMANDS, SPECIAL_COMMANDS
 
 
 class Main:
@@ -28,13 +28,20 @@ class Main:
         while self.running:
             try:
                 entries = entry()
-                commands(entries)
 
-            except CommandNotFoundError as e:
-                alert_ui('error', str(e))
+                cmd = entries[0] # usa o primeiro parametro como comando principal
 
-            except ValueError as e:
-                alert_ui('error', str(e))
+                if cmd in CATEGORIES:
+                    CATEGORIES[cmd]['handler'](entries)
+
+                elif cmd in DEFAULT_COMMANDS:
+                    DEFAULT_COMMANDS[cmd]['handler']()
+
+                elif cmd in SPECIAL_COMMANDS:
+                    SPECIAL_COMMANDS[cmd]['handler'](entries)
+
+                else:
+                    raise CommandNotFoundError(cmd)
 
             except Exception as e:
                 alert_ui('error', str(e))

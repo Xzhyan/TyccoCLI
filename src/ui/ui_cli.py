@@ -14,6 +14,7 @@ class Colors:
     # Cores de textos
     TEXT_ONE = fg.LIGHTGREEN_EX
     TEXT_TWO = fg.LIGHTWHITE_EX
+    TEXT_THREE = fg.WHITE
 
     # Cores dos alertas
     UI_SUCCESS = fg.GREEN
@@ -44,10 +45,13 @@ def list_commands(name: str, commands: dict):
     """Lista os comandos de forma organizada na ferramenta"""
 
     print('')
-    print(f" ┌─[ {name} ]")
+    print(f" {Colors.UI_ONE}┌─[ {Colors.TEXT_TWO}{name} {Colors.UI_ONE}]")
 
     for cmd, data in commands.items():
-        print(f' ├─┬─ {cmd}')
-        print(f' │ ├─ {data['desc']}')
-        print(f' │ └─ {data['usage']}')
+        print(f' {Colors.UI_ONE}│')
+        print(f' {Colors.UI_ONE}├─┬─ {Colors.TEXT_THREE}nome: {Colors.TEXT_TWO}{cmd}')
+        print(f' {Colors.UI_ONE}│ ├─ {Colors.TEXT_THREE}desc: {Colors.TEXT_TWO}{data['desc']}')
+        print(f' {Colors.UI_ONE}│ └─ {Colors.TEXT_THREE}uso: {Colors.TEXT_TWO}{data['usage']}')
+    
+    print(f' {Colors.UI_ONE}└╼')
 

@@ -27,6 +27,23 @@ def set_title(title: str):
     subprocess.run(f'title {title}', shell=True)
 
 
+def entry_validator(message: str, validator: bool = None, error: str = "valor inválido!"):
+    """Função de entradas controladas por validação"""
+
+    while True:
+        value = input(f'\n{message}{Colors.TEXT_ONE}').strip()
+
+        if not value:
+            alert_ui('error', "este campo não pode ficar vazio!")
+            continue
+
+        if validator and not validator(value):
+            alert_ui('error', error)
+            continue
+
+        return value
+
+
 def entry(normalize: bool = True) -> list:
     """Processa as entradas do usuário"""
 
@@ -37,6 +54,6 @@ def entry(normalize: bool = True) -> list:
         raise ValueError("nenhuma entrada foi inserida.")
 
     if normalize:
-        entries.lower()
+        entries = entries.lower()
 
     return entries.split()

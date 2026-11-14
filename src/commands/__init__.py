@@ -1,1 +1,5 @@
-from .cmds import commands
+from .defaults import (
+    CATEGORIES,
+    DEFAULT_COMMANDS,
+    SPECIAL_COMMANDS
+)
